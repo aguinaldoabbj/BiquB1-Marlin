@@ -124,7 +124,8 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+//#define BAUDRATE 115200
+#define BAUDRATE 250000
 //#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
 /**
@@ -1257,7 +1258,10 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -1.5, -34, -1.5 }
+
+//#define NOZZLE_TO_PROBE_OFFSET { -1.5, -34, -1.5 }
+// Using the offset for the provided BLTouch Mount (Biqu B1's original) according to official BTT sources
+#define NOZZLE_TO_PROBE_OFFSET { 24, -37, -1.5 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.

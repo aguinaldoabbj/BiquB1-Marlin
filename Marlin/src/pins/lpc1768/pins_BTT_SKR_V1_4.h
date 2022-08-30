@@ -46,9 +46,9 @@
 #endif
 
 #if ENABLED(I2C_EEPROM)
-  #define MARLIN_EEPROM_SIZE              0x8000  // 32K
+  #define MARLIN_EEPROM_SIZE              0x8000  // 32Kb
 #elif ENABLED(SDCARD_EEPROM_EMULATION)
-  #define MARLIN_EEPROM_SIZE               0x800  // 2K
+  #define MARLIN_EEPROM_SIZE               0x800  // 2Kb
 #endif
 
 //
@@ -62,8 +62,12 @@
 #define X_DIAG_PIN                         P1_29  // X-STOP
 #define Y_DIAG_PIN                         P1_28  // Y-STOP
 #define Z_DIAG_PIN                         P1_27  // Z-STOP
-#define E0_DIAG_PIN                        P1_26  // E0DET
-#define E1_DIAG_PIN                        P1_25  // E1DET
+
+// Swapping E0/E1 pins
+//#define E0_DIAG_PIN                        P1_26  // E0DET
+//#define E1_DIAG_PIN                        P1_25  // E1DET
+#define E1_DIAG_PIN                        P1_26  // E0DET
+#define E0_DIAG_PIN                        P1_25  // E1DET
 
 //
 // Limit Switches
@@ -134,8 +138,12 @@
 //
 // Filament Runout Sensor
 //
-#define FIL_RUNOUT_PIN                     P1_26  // E0DET
-#define FIL_RUNOUT2_PIN                    P1_25  // E1DET
+
+// Swapping E0/E1 pins
+//#define FIL_RUNOUT_PIN                     P1_26  // E0DET
+//#define FIL_RUNOUT2_PIN                    P1_25  // E1DET
+#define FIL_RUNOUT2_PIN                   P1_26  // E1DET
+#define FIL_RUNOUT_PIN                    P1_25  // E0DET
 
 //
 // Power Supply Control
@@ -175,18 +183,34 @@
   #define Z_CS_PIN                         P1_08
 #endif
 
-#define E0_STEP_PIN                        P2_13
-#define E0_DIR_PIN                         P0_11
-#define E0_ENABLE_PIN                      P2_12
-#ifndef E0_CS_PIN
-  #define E0_CS_PIN                        P1_04
+// Swapping E0/E1 pins
+
+// #define E0_STEP_PIN                        P2_13
+// #define E0_DIR_PIN                         P0_11
+// #define E0_ENABLE_PIN                      P2_12
+// #ifndef E0_CS_PIN
+//   #define E0_CS_PIN                        P1_04
+// #endif
+
+// #define E1_STEP_PIN                        P1_15
+// #define E1_DIR_PIN                         P1_14
+// #define E1_ENABLE_PIN                      P1_16
+// #ifndef E1_CS_PIN
+//   #define E1_CS_PIN                        P1_01
+// #endif
+
+#define E1_STEP_PIN                        P2_13
+#define E1_DIR_PIN                         P0_11
+#define E1_ENABLE_PIN                      P2_12
+#ifndef E1_CS_PIN
+  #define E1_CS_PIN                        P1_04
 #endif
 
-#define E1_STEP_PIN                        P1_15
-#define E1_DIR_PIN                         P1_14
-#define E1_ENABLE_PIN                      P1_16
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN                        P1_01
+#define E0_STEP_PIN                        P1_15
+#define E0_DIR_PIN                         P1_14
+#define E0_ENABLE_PIN                      P1_16
+#ifndef E0_CS_PIN
+  #define E0_CS_PIN                        P1_01
 #endif
 
 #define TEMP_1_PIN                      P0_23_A0  // A0 (T0) - (67) - TEMP_1_PIN
@@ -235,11 +259,18 @@
   #define Z_SERIAL_TX_PIN                  P1_08
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
 
-  #define E0_SERIAL_TX_PIN                 P1_04
-  #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
+  // Swapping E0/E1 pins
+  //#define E0_SERIAL_TX_PIN                 P1_04
+  //#define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
 
-  #define E1_SERIAL_TX_PIN                 P1_01
+  //#define E1_SERIAL_TX_PIN                 P1_01
+  //#define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
+
+  #define E1_SERIAL_TX_PIN                 P1_04
   #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
+
+  #define E0_SERIAL_TX_PIN                 P1_01
+  #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
 
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
@@ -272,7 +303,7 @@
 #define EXP2_09_PIN                        P0_15
 #define EXP2_10_PIN                        P0_17
 
-#if HAS_DWIN_E3V2 || IS_DWIN_MARLINUI
+#if EITHER(HAS_DWIN_E3V2, IS_DWIN_MARLINUI)
 
   // RET6 DWIN ENCODER LCD
   #define BTN_ENC                    EXP1_06_PIN
