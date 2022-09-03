@@ -1259,9 +1259,11 @@
  *     O-- FRONT --+
  */
 
-//#define NOZZLE_TO_PROBE_OFFSET { -1.5, -34, -1.5 }
+
+// Using this ABL mount: https://www.thingiverse.com/thing:4564987
+#define NOZZLE_TO_PROBE_OFFSET { -1.5, -34, -1.5 }
 // Using the offset for the provided BLTouch Mount (Biqu B1's original) according to official BTT sources
-#define NOZZLE_TO_PROBE_OFFSET { 24, -37, -1.5 }
+//#define NOZZLE_TO_PROBE_OFFSET { 24, -37, -1.5 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
