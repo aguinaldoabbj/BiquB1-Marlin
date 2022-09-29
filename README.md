@@ -1,6 +1,10 @@
-### Custom Firmware
+### Attention!!! Custom Firmware
 
-Based on Luigisvc’s Marlin Sources customizations for my use case/needs. I need to use the extruder channel E1 instead of E0.
+Based on Luigisvc's Marlin Sources customizations for my use case/needs. I need to use the extruder channel E1 instead of E0. This is a custom Marlin 2.0.9.3.x firmware meant for for Biqu B1 with SKR 1.4 mainboard and a non-working default extruder channel (E0). This firmware uses E1 instead for all extruding functions, but does this as it was E0.
+
+Physically in the mainboard you must move the stepper motor driver (TMC2225 or TMC2208 mostly) from channel E0-CLS to E1-CLS (you also have to replicate the jumper configuration of E0 on E1) and also move the plug that goes to the stepper motor from socket E0M to E1M.
+
+This repository contains the source and binaries.
 
 <p align="center"><img src="buildroot/share/pixmaps/logo/marlin-outrun-nf-500.png" height="250" alt="MarlinFirmware's logo" /></p>
 
